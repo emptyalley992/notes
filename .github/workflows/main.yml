@@ -1,0 +1,31 @@
+name: Auto Generate Index
+on: [push] # 每当你上传文件，这个机器人就动起来
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Generate README
+        run: |
+          echo "# 🚀 笔记全库索引" > README.md
+          echo "这里是自动生成的笔记列表，按文件夹分类：" >> README.md
+          # 扫描所有文件夹并生成链接
+          for dir in $(find . -maxdepth 1 -type d ! -name ".*" ! -name "node_modules"); do
+            if [ "$dir" != "." ]; then
+              echo "## ${dir#./}" >> README.md
+              for file in $(find "$dir" -name "*.md"); do
+                title=$(basename "$file" .md)
+                echo "- [$title]($file)" >> README.md
+              done
+            fi
+          done
+          
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git commit -m "Auto-update index" || exit 0
+          git push
