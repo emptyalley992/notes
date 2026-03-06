@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>笔记库</title>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/style.min.css" />
 </head>
 <body>
   <div id="app">加载中...</div>
@@ -25,10 +26,12 @@
       // 核心配置：无论在哪个子目录下，都统一使用根目录下的 _sidebar.md
       alias: {
         '/.*/_sidebar.md': '/_sidebar.md'
-      }
+      },
+      sidebarDisplayLevel: 1,
     }
   </script>
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
 </body>
 </html>
