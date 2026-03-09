@@ -1,4 +1,4 @@
-* [🏠 首页](README.md)
+* [首页](README.md)
 
 * **工具使用**
   * [工具笔记 1](tools/test.md)
